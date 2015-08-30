@@ -16,7 +16,7 @@ You can include Meteor's Blaze native templates with the [blaze-template](http:/
     A couple of todos
 </template>
 
-<blaze-template name='todoList'></blaze-template>
+<blaze-template name="todoList"></blaze-template>
 ```
 
 Read more on blaze-template, using parameters and binding Blaze templates to Angular's scope in the [API docs](http://angular-meteor.com/api/meteor-include).
