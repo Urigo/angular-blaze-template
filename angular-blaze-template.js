@@ -19,6 +19,9 @@ angularMeteorTemplate.directive('blazeTemplate', [
             var viewHandler = Blaze.renderWithData(template, scope, element[0]);
             $compile(element.contents())(scope);
 
+            var childs = element.children();
+            element.replaceWith(childs);
+
             scope.$on('$destroy', function() {
               Blaze.remove(viewHandler);
             });
