@@ -1,6 +1,6 @@
 Package.describe({
   name: 'urigo:angular-blaze-template',
-  version: '0.1.2',
+  version: '0.2.0',
   summary: 'Include Blaze templates in your angular-meteor application.',
   git: 'https://github.com/Urigo/angular-blaze-template',
   documentation: 'README.md'
