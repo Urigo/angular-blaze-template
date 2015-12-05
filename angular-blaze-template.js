@@ -16,10 +16,15 @@ angularMeteorTemplate.directive('blazeTemplate', [
           if (name && Template[name]) {
 
             var template = Template[name];
-            var viewHandler = Blaze.renderWithData(template, scope, element[0]);
-            $compile(element.contents())(scope);
-
-            element.find().unwrap();
+            
+            if (typeof attributes['replace'] !== 'undefined') {
+              var renderOpts = [template, scope, element.parent()[0], element[0]],
+                  viewHandler = Blaze.renderWithData.apply(null, renderOpts);
+              element.remove();
+            } else {
+              $compile(element.contents())(scope);
+              element.find().unwrap();
+            }
 
             scope.$on('$destroy', function() {
               Blaze.remove(viewHandler);
