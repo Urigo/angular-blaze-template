@@ -9,6 +9,7 @@ Package.describe({
 Package.onUse(function(api) {
   api.versionsFrom('1.1.0.3');
   api.use('angular-with-blaze@1.2.0', 'client');
+  api.use('blaze-html-templates', 'client');
   api.addFiles('angular-blaze-template.js', 'client');
 });
 
