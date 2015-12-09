@@ -19,13 +19,8 @@ angularMeteorTemplate.directive('blazeTemplate', [
                 viewHandler;
             
             if (typeof attributes['replace'] !== 'undefined') {
-              var _renderWithDataAttributes = [
-                template,
-                scope,
-                element.parent()[0],
-                element[0]
-              ];
-              viewHandler = Blaze.renderWithData.apply(null, _renderWithDataAttributes);
+              viewHandler = Blaze.
+                renderWithData(template, scope, element.parent()[0], element[0]);
               element.remove();
             } else {
               viewHandler = Blaze.renderWithData(template, scope, element[0]);
