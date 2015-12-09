@@ -19,4 +19,14 @@ You can include Meteor's Blaze native templates with the [blaze-template](http:/
 <blaze-template name="todoList"></blaze-template>
 ```
 
+### `replace` directive with template content
+Sometimes, the page styling or logic could strictly depend on the DOM tree
+depth level where the template elements are located. The directive element
+could be replaced with the contents of the template using the attribute
+`replace` as follows:
+
+```html
+<blaze-template name="todoList" replace></blaze-template>
+```
+
 Read more on blaze-template, using parameters and binding Blaze templates to Angular's scope in the [API docs](http://angular-meteor.com/api/blaze-template).
