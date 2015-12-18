@@ -29,4 +29,10 @@ could be replaced with the contents of the template using the attribute
 <blaze-template name="todoList" replace></blaze-template>
 ```
 
+**WARNING:** If `replace` is used, the original directive DOM element will
+be completely removed and replaced with the content of the template. Therefore,
+it will not be possible to use replace in combination with any other
+directive, like `ng-if` or `ng-switch`.
+
+### Next steps
 Read more on blaze-template, using parameters and binding Blaze templates to Angular's scope in the [API docs](http://angular-meteor.com/api/blaze-template).
