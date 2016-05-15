@@ -1,45 +1,46 @@
-var angularMeteorTemplate = angular.module('angular-blaze-template', []);
+/**
+ * This directive allows the use of Blaze templates in Angular templates.
+ */
+import { Blaze } from 'meteor/blaze'
+import { Template } from 'meteor/templating'
+import angular from 'angular'
 
-// blaze-template adds Blaze templates to Angular as directives
-angularMeteorTemplate.directive('blazeTemplate', [
-  '$compile',
-  function ($compile) {
+const moduleName = 'angular-blaze-template'
+
+angular.module(moduleName, [])
+  .directive('blazeTemplate', ($compile, $log) => {
+    'ngInject'
     return {
       restrict: 'AE',
       scope: false,
-      link: function (scope, element, attributes) {
-        // Check if templating and Blaze package exist, they won't exist in a
-        // Meteor Client Side (https://github.com/idanwe/meteor-client-side) application
-        if (Template && Package['blaze']){
+      /**
+       * @param {$rootScope.Scope} scope
+       * @param {jQuery} element element where the Blaze template will be attached to.
+       * @param {{name: string, blazeTemplate: string, replace:string}} attrs
+       */
+      link: (scope, element, attrs) => {
+        const name = attrs.blazeTemplate || attrs.name
+        if (name && Template[name]) {
+          const template = Template[name]
+          let viewHandler
 
-          var name = attributes.blazeTemplate || attributes.name;
-          if (name && Template[name]) {
-
-            var template = Template[name],
-                viewHandler;
-            
-            if (typeof attributes['replace'] !== 'undefined') {
-              viewHandler = Blaze.
-                renderWithData(template, scope, element.parent()[0], element[0]);
-              element.remove();
-            } else {
-              viewHandler = Blaze.renderWithData(template, scope, element[0]);
-              $compile(element.contents())(scope);
-              element.find().unwrap();
-            }
-
-            scope.$on('$destroy', function() {
-              Blaze.remove(viewHandler);
-            });
-
+          if (angular.isDefined(attrs.replace)) {
+            viewHandler = Blaze.renderWithData(template, scope, element.parent()[0], element[0])
+            element.remove()
           } else {
-            console.error("meteorTemplate: There is no template with the name '" + name + "'");
+            viewHandler = Blaze.renderWithData(template, scope, element[0])
+            $compile(element.contents())(scope)
+            element.find().unwrap()
           }
+
+          scope.$on('$destroy', () => {
+            Blaze.remove(viewHandler)
+          })
+        } else {
+          $log.error(`blazeTemplate: There is no template with the name '${name}'`)
         }
       }
-    };
-  }
-]);
+    }
+  })
 
-var angularMeteorModule = angular.module('angular-meteor');
-angularMeteorModule.requires.push('angular-blaze-template');
+export default moduleName
