@@ -1,22 +1,9 @@
-/* eslint-env browser,meteor */
 /**
  * This directive allows the use of Blaze templates in Angular templates.
  */
 import { Blaze } from 'meteor/blaze'
 import { Template } from 'meteor/templating'
 import angular from 'angular'
-
-// eslint-disable-next-line angular/window-service
-if (!window.angular) {
-  try {
-    if (Package['modules-runtime']) {
-      const require = Package['modules-runtime'].meteorInstall()
-      require('angular')
-    }
-  } catch (e) {
-    throw new Error('angular package is missing')
-  }
-}
 
 const moduleName = 'angular-blaze-template'
 
