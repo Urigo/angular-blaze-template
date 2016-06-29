@@ -1,9 +1,9 @@
-<a href="http://angular-meteor.com/"><img src="http://angular-meteor.com/images/logo-large.png" width="60" height="60" /></a>  [urigo:angular-blaze-template](http://angular-meteor.com/api/blaze-template)
+<a href="http://angular-meteor.com/"><img src="http://angular-meteor.com/images/logo-large.png" width="60" height="60" /></a>  [trajano:angular-blaze-template](http://angular-meteor.com/api/blaze-template)
 ======================================================
 
 ### &lt;blaze-template&gt;
 
-Include Blaze templates in your [angular-meteor](http://angular-meteor.com/) application.
+Include Blaze templates in your [angular-meteor](http://angular-meteor.com/) application.  This only supports Meteor 1.3 and above, use urigo:angular-blaze-template for earlier versions.
 
 ### Quick start
 
